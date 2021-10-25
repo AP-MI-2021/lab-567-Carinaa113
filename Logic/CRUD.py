@@ -1,4 +1,4 @@
-from Domain.carte import creeazaCarte
+
 
 def adaugaCarte(id,titlu,gen,pret,tip_reducere,lista):
     '''
