@@ -35,7 +35,11 @@ def stergeCarte(id,lista):
     :return:
     '''
 
-    return [carte for carte in lista if getId(carte) != id]
+    listaNoua=[]
+    for carte in lista:
+        if getId(carte) != id:
+            listaNoua.append(carte)
+    return listaNoua
 
 
 def modificaCarte(id,titlu,gen,pret,tip_reducere):

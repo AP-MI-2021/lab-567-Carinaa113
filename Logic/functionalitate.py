@@ -1,17 +1,33 @@
-def reducerePret(reducerePret,lista):
-    '''
-     reduc pretul cartilor care contin in titlu un substring dat cu un anumit tip d
-    :param reducerePret: introduc discountul produsului
-    :param lista: lista cu noul pret
-    :return: cartea cu noul pret in functie de reducerea aplicata
-    '''
+#reducerea pretului in functie de discountul aplicat
+def reducere(lista):
+    listanoua=[]
+    for carte in lista :
+        if getTip_Reducere(carte)=="silver":
+            cartenoua=creeazaCarte(
+                getId(carte),
+                getTitlu(carte),
+                getGen(carte),
+                getPret(carte)*0,95,
+                getTip_Reducere(carte)
+            )
+            listanoua.append(cartenoua)
+        elif getTip_Reducere(carte)=="gold":
+             cartenoua=creeazaCarte(
+                 getId(carte),
+                 getTitlu(carte),
+                 getGen(carte),
+                 getPret(carte)*0.90,
+                 getTip_Reducere(carte)
+             )
+            listanoua.append(cartenoua)
+        else
+            listanoua.append(carte)
+        return listanoua
 
-def tipul_reducerii():
-    if tip_reducere
+#Modificarea genului pentru un titlu dat.
 
- if reducerePret== none:
-     return 0:
- elif tip_reducere == silver:
-     return reducerePret*.05;
- elif tip_reducere== gold:
-     return reducerePret*.1;
+def modificGenul(gennou,titlu,lista):
+    listan=[]
+    for carte in lista:
+        if titlu==getTitlu(lista):
+    return carte
