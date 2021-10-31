@@ -19,7 +19,7 @@ def AplicareDiscount(lista):
         )
 
           listanoua.append(carteNoua)
-    elif getTip_Reducere(carte)=="Gold":
+    elif  getTip_Reducere(carte)=="Gold":
          carteNoua=creeazaCarte(
              getId(carte),
              getTitlu(carte),
@@ -28,7 +28,7 @@ def AplicareDiscount(lista):
              getTip_Reducere(carte)
          )
          listanoua.append(carteNoua)
-    else:
+    else
          listanoua.append(carte)
 
     return listanoua
@@ -51,3 +51,15 @@ def pretminim(lista):
             else:
                 rezultat[gen]
     return rezultat
+
+#ordonare crescatoare in functie de pret
+
+def ordonareCrescatoare(lista):
+    '''
+    Ordonarea cartilor in functie de pret
+    :param lista: lista cartilor
+    :return: lista cartilor ordonata in functie de pret
+    '''
+
+    listanoua=sorted(lista,key=lambda carte:getPret(carte))
+    return listanoua
