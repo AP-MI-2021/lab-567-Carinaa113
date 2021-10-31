@@ -19,13 +19,13 @@ def AplicareDiscount(lista):
         )
 
           listanoua.append(carteNoua)
-    elif  getTip_Reducere(carte)=="Gold":
-         carteNoua=creeazaCarte(
-             getId(carte),
-             getTitlu(carte),
-             getGen(carte),
-             getPret(carte)*9/10,
-             getTip_Reducere(carte)
+    elif  getTip_Reducere(carte) =="Gold":
+          carteNoua=creeazaCarte(
+          getId(carte),
+          getTitlu(carte),
+          getGen(carte),
+          getPret(carte)*9/10,
+          getTip_Reducere(carte)
          )
          listanoua.append(carteNoua)
     else
