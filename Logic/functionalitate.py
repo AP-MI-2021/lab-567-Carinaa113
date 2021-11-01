@@ -1,65 +1,74 @@
-#reducerea pretului in functie de discountul aplicat
+from Domain.carte import getId,getTitlu,getPret,getGen,getTip_Reducere
 
-def AplicareDiscount(lista):
+
+# reducerea pretului in functie de discountul aplicat
+
+def aplicareDiscount(id,titlu,gen,pret,tip_reducere,lista):
     '''
     Aplicam un discount de 5% pentru reduceri silver si 10% pentru reduceri gold
     :param lista: lista de carti
     :return: noua lista de carti,modificata
     '''
 
-    listanoua=[]
+
     for carte in lista:
-        if getTip_Reducere(carte)=="Silver":
-            carteNoua=creeazaCarte(
-            getId(carte),
-            getTitlu(carte),
-            getGen(carte),
-            getPret(carte)*19/20,
-            getTip_Reducere(carte)
-        )
+        if getTip_Reducere(carte) == "Silver":
+            pret_redus = getPret() - getPret() * 5/100
 
-          listanoua.append(carteNoua)
-    elif  getTip_Reducere(carte) =="Gold":
-          carteNoua=creeazaCarte(
-          getId(carte),
-          getTitlu(carte),
-          getGen(carte),
-          getPret(carte)*9/10,
-          getTip_Reducere(carte)
-         )
-         listanoua.append(carteNoua)
-    else
-         listanoua.append(carte)
+            # carteNoua = creeazaCarte(
+            #     getId(carte),
+            #     getTitlu(carte),
+            #     getGen(carte),
+            #     getPret(carte) * 5/100,
+            #     getTip_Reducere(carte),
+            # )
 
-    return listanoua
 
-#redarea pretului nou in functie de gen
+        elif getTip_Reducere(carte) == "Gold":
+               pret_redus = getPret() - getPret() * 10/100
+            #   carteNoua = creeazaCarte(
+            #     getId(carte),
+            #     getTitlu(carte),
+            #     getGen(carte),
+            #     getPret(carte) * 10/100,
+            #     getTip_Reducere(carte),
+            #     )
 
-def pretminim(lista):
-    '''
-    Dterminam pretul minim pentru fiecare gen
-    :param lista: lista cartilor
-    :return: pretul minim in functie de gen
-    '''
-    rezultat={}
-    for carte in lista:
-        gen=getGen(carte)
-        pret=getPret(carte)
-        if gen in rezultat:
-            if pret<rezultat[gen]:
-                rezultat[gen]=pret
-            else:
-                rezultat[gen]
-    return rezultat
+        else:
+            return None
 
-#ordonare crescatoare in functie de pret
 
-def ordonareCrescatoare(lista):
-    '''
-    Ordonarea cartilor in functie de pret
-    :param lista: lista cartilor
-    :return: lista cartilor ordonata in functie de pret
-    '''
 
-    listanoua=sorted(lista,key=lambda carte:getPret(carte))
-    return listanoua
+# redarea pretului nou in functie de gen
+
+# def pretminim(lista):
+#     '''
+#     Dterminam pretul minim pentru fiecare gen
+#     :param lista: lista cartilor
+#     :return: pretul minim in functie de gen
+#     '''
+#     rezultat = {}
+#     for carte in lista:
+#         gen = getGen(carte)
+#         pret = getPret(carte)
+#         if gen in rezultat:
+#             if pret < rezultat[gen]:
+#                 rezultat[gen] = pret
+#             else:
+#                 rezultat[gen]
+#     return rezultat
+#
+#
+# # ordonare crescatoare in functie de pret
+#
+# def ordonareCrescatoare(lista):
+#     '''
+#     Ordonarea cartilor in functie de pret
+#     :param lista: lista cartilor
+#     :return: lista cartilor ordonata in functie de pret
+#     '''
+#
+#     listanoua = sorted(lista, key=lambda carte: getPret(carte))
+#     return listanoua
+#
+print(aplicareDiscount("1","Colt Alb", "aventura",15,"silver",lista))
