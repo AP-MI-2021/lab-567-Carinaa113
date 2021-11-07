@@ -89,16 +89,49 @@ def numarTitluri(lista):
     :return: numarul de titluri diferite pentru fiecare gen in parte
     '''
 
-   numar = 1
-   rezultat={}
+
+def numarTitluri(lista):
+   genuri={}
+   titluri={}
+
    for carte in lista:
        titlu=getTitlu(carte)
        gen=getGen(carte)
-       if gen in rezultat:
-           if titlu!= rezultat[gen]:
-               numar=numar+1
-               rezultat[gen]=numar
-       else:
-           rezultat[gen]=1
-   return rezultat
+       if gen in genuri:
+           if titlu in titluri:
+               genuri[gen]=genuri[gen]+1
+               titluri[titlu]=titlu
+           else:
+               genuri[gen]=1
+               titluri[titlu]=titlu
+   return genuri
 
+
+def doUndo(undolist,redolist,lista_curenta):
+    '''
+    Returneaza lista dupa un apel al functiei Undo
+    :param undolist:lista listei de cheltuieli,modificata in urma unui apel al functionalitatii
+    :param redolist:lista de liste care se modifica in urma fiecarui apel Undo
+    :param lista_curenta:lista curenta de carti
+    :return:lista noua ini urma apelului Undo
+    '''
+    if undolist:
+        top_undo=undolist.pop()
+        redolist.append(lista_curenta)
+        return top_undo
+    return None
+
+def doRedo(undolist,redolist,listacurenta):
+    '''
+    Returneaza lista dupa un apel al functiei Redo
+    :param undolist: Lista de liste de carti,ce se modifica in urma apeluluui unei functionalitati
+    :param redolist: lista de lise care se modifica in urma uunei apelari Undo
+    :param listacurenta: lista actuala de carti
+    :return: lista noua ce se obtine dupa Redo
+    '''
+
+    if redolist:
+        top_redo=redolist.pop()
+        undolist.append(listacurenta)
+        return top_redo
+    return None

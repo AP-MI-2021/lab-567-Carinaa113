@@ -69,7 +69,7 @@ def modificaCarte(id,titlu,gen,pret,tip_reducere):
     '''
 
     if getById(id,lista) is None:
-        raise ValueError("Nu exista vreo carteu id-ul dat!")
+        raise ValueError("Nu exista vreo carte cu  id-ul dat!")
     listaNoua=[]
     for carte in lista:
         if getId(carte)==id:

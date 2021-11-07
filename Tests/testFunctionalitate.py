@@ -67,4 +67,3 @@ def testnumarTitluri():
     assert rezultat["realism"]==1
 
 
-
