@@ -3,8 +3,6 @@ from Tests.testDomain import testCarte
 from Test.testFunctionalitate import testaplicareDiscount,testmodificareGen,testpretMin,testordonarePret,testnumarTitluri
 
 
-
-
 def runAllTests():
     testCarte()
     testAdaugaCarte()
