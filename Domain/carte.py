@@ -35,6 +35,10 @@ def getPret(carte):
 def getTip_Reducere(carte):
     return carte[4]
 
+def schimbareGen(carte,genNou):
+
+    carte[gen]=genNou
+
 
 def toString(carte):
     return "Id:{},Titlu:{},  Gen:{} ,Pret:{}, Tip_Reducere:{}".format(

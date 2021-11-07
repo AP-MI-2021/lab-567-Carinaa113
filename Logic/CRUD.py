@@ -1,3 +1,4 @@
+from Domain.carte import creeazaCarte,getId,getTitlu,getTip_Reducere
 
 
 def adaugaCarte(id,titlu,gen,pret,tip_reducere,lista):
@@ -11,8 +12,12 @@ def adaugaCarte(id,titlu,gen,pret,tip_reducere,lista):
     :param lista:lista de carti
     :return:o lista continand elementele vechi si noua carte
     '''
-    carte = creeazaCarte(id,titlu,gen,pret,tip_reducere)
-    return lista + [carte]
+    if getById(id,lista) is not None:
+        raise ValueError("Id-ul exista deja!")
+    carte=creeazaCarte(id,titlu,gen,pret,tip_reducere)
+    if pret<0:
+        raise ValueError("Pretul nu poate fi numar negativ!")
+    return lista+[carte]
 
 def getById(id,lista):
     '''
@@ -26,6 +31,17 @@ def getById(id,lista):
             return carte
     return None
 
+def getByTitlu(titlu,lista):
+    '''
+
+    :param titlu:
+    :param lista:
+    :return:
+    '''
+    for carte in lista:
+        if getTitlu(carte)==titlu:
+            return carte
+        return None
 
 def stergeCarte(id,lista):
     '''
@@ -35,11 +51,10 @@ def stergeCarte(id,lista):
     :return:
     '''
 
-    listaNoua=[]
-    for carte in lista:
-        if getId(carte) != id:
-            listaNoua.append(carte)
-    return listaNoua
+    if getById(id,lista) is None:
+        raise ValueError("Nu exista vreo carte cu id-ul dat!")
+    return[carte for carte in lista if getId(carte) != id]
+
 
 
 def modificaCarte(id,titlu,gen,pret,tip_reducere):
@@ -53,11 +68,13 @@ def modificaCarte(id,titlu,gen,pret,tip_reducere):
     :return:
     '''
 
+    if getById(id,lista) is None:
+        raise ValueError("Nu exista vreo carteu id-ul dat!")
     listaNoua=[]
     for carte in lista:
         if getId(carte)==id:
-            carteNoua+ creeazaCarte(id,titlu,gen,pret,tip_reducere)
-            listaNoua.append(carteNoua)
+            carte_noua==creeazaCarte(id,titlu,gen,pret,tip_reducere)
+            listaNoua.append(carte_noua)
         else:
-            listNoua.append(carte)
+            listaNoua.append(carte)
     return listaNoua
