@@ -20,12 +20,14 @@ def testmodificareGen():
     lista = adaugaCarte("2","Surprise Me","actiune",45,"silver", lista )
 
 
-    modificareGen("Iliada Homer","istorie", lista)
+
+    lista = modificareGen("Surprise Me", "actiune", lista)
+    lista = modificareGen("Iliada Homer", "istorie", lista)
+
+    assert getGen(getById("2", lista)) == "actiune"
     assert getGen(getById("1", lista))=="istorie"
 
 
-    modificareGen("Surprise Me","actiune",lista)
-    assert getGen(getById("2", lista))=="actiune"
 
 def testpretMin():
     lista = []
@@ -48,8 +50,8 @@ def testordonarePret():
 
     rezultat=ordonarePret(lista)
 
-    assert getId(rezultat[0]) == "1"
-    assert getId(rezultat[1]) == "2"
+    assert getId(rezultat[0]) == "2"
+    assert getId(rezultat[1]) == "1"
 
 
 

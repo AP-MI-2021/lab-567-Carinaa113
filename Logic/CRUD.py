@@ -39,7 +39,7 @@ def getByTitlu(titlu, lista):
     :return:cartea cu titlul dat din lista sau None daca nu exista
     '''
     for carte in lista:
-        if getTitlu(carte ) == titlu:
+        if getTitlu(carte) == titlu:
             return carte
         return None
 
@@ -70,10 +70,10 @@ def modificaCarte(id, titlu, gen, pret, tip_reducere, lista=None):
 
     if getById(id, lista) is None:
         raise ValueError("Nu exista vreo carte cu  id-ul dat!")
-    listaNoua=[]
+    listaNoua = []
     for carte in lista:
-        if getId(carte)==id:
-            carte_noua=creeazaCarte(id,titlu,gen,pret,tip_reducere)
+        if getId(carte) == id:
+            carte_noua = creeazaCarte(id,titlu,gen,pret,tip_reducere)
             listaNoua.append(carte_noua)
         else:
             listaNoua.append(carte)

@@ -9,7 +9,7 @@ def creeazaCarte(id, titlu, gen, pret, tip_reducere):
     :return:un dictionar ce contine o carte
         '''
 
-    list=[id, titlu, gen, pret, tip_reducere]
+    list = [id, titlu, gen, pret, tip_reducere]
 
     return list
 
@@ -37,7 +37,7 @@ def getTip_Reducere(carte):
 
 def schimbareGen(carte, genNou):
 
-    carte[2]=genNou
+    carte[2] = genNou
 
 
 def toString(carte):

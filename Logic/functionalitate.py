@@ -1,8 +1,6 @@
-from Domain.carte import getId,getTitlu,getPret,getGen,getTip_Reducere,creeazaCarte
-from Logic.CRUD import getByTitlu
-
-
+from Domain.carte import getId, getTitlu, getPret, getGen, getTip_Reducere, creeazaCarte
 # reducerea pretului in functie de discountul aplicat
+
 
 def aplicareDiscount(lista):
     '''
@@ -11,10 +9,10 @@ def aplicareDiscount(lista):
     :return: noua lista de carti,modificata
     '''
 
-    listaNoua=[]
+    listaNoua = []
     for carte in lista:
         if getTip_Reducere(carte) == "silver":
-            noua_vanzare=creeazaCarte(
+            noua_vanzare = creeazaCarte(
                 getId(carte),
                 getTitlu(carte),
                 getGen(carte),
@@ -23,8 +21,8 @@ def aplicareDiscount(lista):
         )
             listaNoua.append(noua_vanzare)
 
-        elif getTip_Reducere(carte)=="gold":
-             noua_vanzare=creeazaCarte(
+        elif getTip_Reducere(carte) == "gold":
+             noua_vanzare = creeazaCarte(
                  getId(carte),
                  getTitlu(carte),
                  getGen(carte),
@@ -38,20 +36,29 @@ def aplicareDiscount(lista):
     return listaNoua
 
 
-def modificareGen(titlu,GenNou,lista):
+def modificareGen(titluNou, GenNou, lista):
     '''
     Modifica genul cartii
-    :param titlu:titlu cartii actuale
+    :param titluNou:titlu cartii actuale
     :param GenNou:noul gen al cartii
     :param lista:lista de carti
     :return:genul modificat al cartii
     '''
 
+    listaNoua = []
     for carte in lista:
-        if getTitlu(carte)==titlu:
-            modificareGen(carte,GenNou,lista)
-        if getByTitlu(titlu,lista) is None:
-            raise ValueError("Nu exista titlu dat!")
+        if getTitlu(carte) == titluNou:
+            carteNoua = creeazaCarte(
+                getId(carte),
+                getTitlu(carte),
+                getGen(carte).replace(getGen(carte), GenNou) ,
+                getPret(carte),
+                getTip_Reducere(carte)
+            )
+            listaNoua.append(carteNoua)
+        else:
+            listaNoua.append(carte)
+    return listaNoua
 
 
 def pretMin(lista):
@@ -61,15 +68,15 @@ def pretMin(lista):
     :return:pretul minim pentru fiecare gen
     '''
 
-    rezultat={}#creeam un dictionar
+    rezultat = {}#creeam un dictionar
     for carte in lista:
-        gen=getGen(carte)
-        pret=getPret(carte)
+        gen = getGen(carte)
+        pret = getPret(carte)
         if gen in rezultat:
-            if pret<rezultat[gen]:
-                rezultat[gen]=pret
+            if pret < rezultat[gen]:
+                rezultat[gen] = pret
         else:
-                rezultat[gen]=pret
+                rezultat[gen] = pret
     return rezultat
 
 

@@ -30,7 +30,7 @@ def uiAdaugaCarte(lista,undolist,redolist):
         rezultat=adaugaCarte(id,titlu,gen,pret,tip_reducere,lista)
 
         undolist.append(lista)
-        redolist.clear(lista)
+        redolist.clear()
         return rezultat
     except ValueError as ve:
         print('Eroare! Detalii:'.format(ve))

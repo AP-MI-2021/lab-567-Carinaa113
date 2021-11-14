@@ -38,48 +38,35 @@ def showAll(lista):
     for carte in lista:
         print(toString(carte))
 
-def ajutor():
-    '''
-    un nou meniu prin care tote comenzile sunt separate prin ';' si ","
-    :return:
-    '''
-    print("add, id, titlu, gen, pret, tip_reducere"
-          "Delete, id"
-          "Modify, id,titlu, gen, pret, tip_reducere"
-          "Show All"
-          "help"
-          "Iesire")
 
 
 def meniu(lista):
-    try:
-        while True:
-            comenzi = input("Comenzi separate prin ';' si ','")
-            vanzari = []
-            vanzari = comenzi.split(";")
-            for comanda in vanzari:
-                operatie = []
-                operatie = comanda.split(",")
-                if operatie[0] == "Add":
-                    operatie.pop(0)
-                    lista = uiAdaugaCarte(operatie , lista)
-                elif operatie[0] == "Delete":
-                    operatie.pop(0)
-                    lista = uiStergeCarte(operatie, lista)
-                elif operatie[0] == "Modify":
-                    operatie.pop(0)
-                    lista = uiModificaCarte(operatie, lista)
-                elif operatie[0] == "Show All":
-                    showAll(lista)
-                elif operatie[0] == "help":
-                    help()
-                elif operatie[0] == "Iesire":
-                    break
-                else:
-                    print("Optiune gresita! Reincercati: ")
+    print("Comenzile introduse trebuie separate prin ; acestea putand fi: \n"
+                  "Adaugare: add,id,titlu,gen,pret,tip reducere \n"
+                  "Stergere: delete,id-ul cartii de sters \n"
+                  "Afisare: showall \n"
+                  "Atentie !!! Comenzile trebuie introduse exact ca in modelul de mai sus !")
 
-    except Exception as ex:
-        print("Eroare, reincercati!" , ex)
-
+def meniu_nou(lista):
+    while True:
+        meniu(lista)
+        comenzi= input("Introduceti comenzile: ").split(";")
+        for i in range(len(comenzi)):
+            comanda=comenzi[i].split(",")
+            if comanda[0] == "add":
+                try:
+                    lista=adaugaCarte(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
+                except Exception as e:
+                    print(f"Eroare: {e}")
+            elif comanda[0] == " delete":
+                try:
+                    lista=stergeCarte(comanda[1], lista)
+                except ValueError as ve:
+                    print(f"Eroare: {ve}")
+            elif comanda[0] ==" showall":
+                for carte in lista:
+                    print(toString(carte))
+            else:
+                print("Reincercati! Comanda introdusa gresit! ")
 
 
