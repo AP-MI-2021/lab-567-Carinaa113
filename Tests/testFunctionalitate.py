@@ -28,22 +28,23 @@ def testmodificareGen():
     assert getGen(getById("2", lista))=="actiune"
 
 def testpretMin():
-    lista=[]
-    lista=adaugaCarte("1","Iliada Homer","istorie", 80, "gold", lista)
-    lista=adaugaCarte("2", "Surprise Me", "actiune", 45, "silver", lista)
+    lista = []
+    lista = adaugaCarte("1","Iliada Homer","istorie", 80, "gold", lista)
+    lista = adaugaCarte("2", "Surprise Me", "actiune", 45, "silver", lista)
+    lista = adaugaCarte("3", "Cine conduce lumea", "drama", 60, "gold", lista)
 
 
     rezultat=pretMin(lista)
 
-    assert len(rezultat) == 2
+    assert len(rezultat) == 3
     assert rezultat["actiune"] == 45
+    assert rezultat["drama"] == 60
     assert rezultat["istorie"] == 80
 
 def testordonarePret():
     lista=[]
     lista = adaugaCarte("1", "Iliada Homer", "istorie", 80, "gold", lista)
     lista = adaugaCarte("2", "Surprise Me", "actiune", 45, "silver", lista)
-
 
     rezultat=ordonarePret(lista)
 
@@ -56,13 +57,13 @@ def testnumarTitluri():
     lista=[]
     lista = adaugaCarte("1", "Iliada Homer", "istorie", 80, "gold", lista)
     lista = adaugaCarte("2", "Surprise Me", "actiune", 45, "silver", lista)
-    lista = adaugaCarte("3","Ion","actiune",65,"gold", lista)
+
 
 
     rezultat=numarTitluri(lista)
 
     assert rezultat["istorie"] == 1
-    assert rezultat["actiune"] == 2
+    assert rezultat["actiune"] == 1
 
 
 

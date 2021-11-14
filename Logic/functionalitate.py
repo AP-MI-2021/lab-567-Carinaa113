@@ -84,23 +84,23 @@ def ordonarePret(lista):
 
 
 def numarTitluri(lista):
-   genuri={}
-   titluri={}
+   genuri = {}
+   titluri = {}
 
    for carte in lista:
        titlu = getTitlu(carte)
        gen = getGen(carte)
-       if gen in genuri:
-           if titlu in titluri:
-               genuri[gen] = genuri[gen]+1
-               titluri[titlu] = titlu
+       if titlu not in titluri:
+           if gen in genuri:
+              genuri[gen] = genuri[gen]+1
+              titluri[titlu] = titlu
            else:
                genuri[gen] = 1
                titluri[titlu] = titlu
    return genuri
 
 
-def doUndo(undolist,redolist,lista_curenta):
+def doUndo(undolist, redolist, lista_curenta):
     '''
     Returneaza lista dupa un apel al functiei Undo
     :param undolist:lista listei de cheltuieli,modificata in urma unui apel al functionalitatii
@@ -109,12 +109,12 @@ def doUndo(undolist,redolist,lista_curenta):
     :return:lista noua ini urma apelului Undo
     '''
     if undolist:
-        top_undo=undolist.pop()
+        top_undo = undolist.pop()
         redolist.append(lista_curenta)
         return top_undo
     return None
 
-def doRedo(undolist,redolist,listacurenta):
+def doRedo(undolist, redolist, listacurenta):
     '''
     Returneaza lista dupa un apel al functiei Redo
     :param undolist: Lista de liste de carti,ce se modifica in urma apeluluui unei functionalitati
@@ -124,7 +124,7 @@ def doRedo(undolist,redolist,listacurenta):
     '''
 
     if redolist:
-        top_redo=redolist.pop()
+        top_redo = redolist.pop()
         undolist.append(listacurenta)
         return top_redo
     return None

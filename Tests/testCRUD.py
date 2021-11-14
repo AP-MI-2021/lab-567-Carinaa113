@@ -36,7 +36,7 @@ def testmodificaCarte():
     lista=[]
     lista=adaugaCarte("1","Colt Alb", "aventura",15,"silver",lista)
     lista=adaugaCarte("2","Scufita Rosie", "aventura",15,"silver",lista)
-    lista=modificaCarte("1","Cine conduce lumea","drama",60,"gold",lista)
+    lista=modificaCarte("3","Cine conduce lumea","drama",60,"gold",lista)
 
     carteUpdatata=getById("1", lista)
     assert getId(carteUpdatata) == "1"
