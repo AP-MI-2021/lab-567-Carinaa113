@@ -1,69 +1,68 @@
 from Domain.carte import getPret,getGen,getId
-from Logic.Crud import adaugaCarte,getById
+from Logic.CRUD import adaugaCarte,getById
 from Logic.functionalitate import aplicareDiscount,modificareGen,pretMin,ordonarePret,numarTitluri
 
 
 def testaplicareDiscount():
-    lista=[]
-    lista=adaugaCarte("1","Iliada Homer","istorie",80,"gold",lista)
-    lista=adaugaCarte("2","Surprise Me","actiune",45,"silver",lista)
-    lista=adaugaCarte("3","Arta Conversatiei","realism",38,"none",lista)
+    lista = []
+    lista = adaugaCarte("1", "Iliada Homer" , "istorie", 80, "gold", lista)
+    lista = adaugaCarte("2", "Surprise Me", "actiune", 45, "silver", lista)
 
-    lista=aplicareDiscount(lista)
-    assert getPret(carte[0])==72
-    assert getPret(carte[1])==42.75
-    assert getPret(carte[2])==38
+
+    lista = aplicareDiscount(lista)
+
+    assert getPret(getById("1", lista)) == 72
+    assert getPret(getById("2", lista)) == 42.75
 
 def testmodificareGen():
-    lista=[]
-    lista=adaugaCarte("1","Iliada Homer","istorie",80,"gold",lista)
-    lista=adaugaCarte("2","Surprise Me","actiune",45,"silver",lista)
-    lista=adaugaCarte("3","Arta Conversatiei","realism",38,"none",lista)
+    lista = []
+    lista = adaugaCarte("1","Iliada Homer","istorie",80,"gold", lista)
+    lista = adaugaCarte("2","Surprise Me","actiune",45,"silver", lista )
 
-    modificareGen("Iliada Homer","istorie",80,"gold",lista)
-    assert getGen(getById("1",lista))=="istorie"
 
-    modificareGen("Arta Conversatiei","realism",38,"none",lista)
-    assert getGen(getById("3",lista))=="realism"
+    modificareGen("Iliada Homer","istorie", lista)
+    assert getGen(getById("1", lista))=="istorie"
 
-    modificareGen("Surprise Me","actiune",45,"silver",lista)
-    assert getGen(getById("2",lista))=="actiune"
+
+    modificareGen("Surprise Me","actiune",lista)
+    assert getGen(getById("2", lista))=="actiune"
 
 def testpretMin():
     lista=[]
-    lista=adaugaCarte("1","Iliada Homer","istorie",80,"gold",lista)
-    lista=adaugaCarte("2","Surprise Me","actiune",45,"silver",lista)
-    lista=adaugaCarte("3","Arta Conversatiei","realism",38,"none",lista)
+    lista=adaugaCarte("1","Iliada Homer","istorie", 80, "gold", lista)
+    lista=adaugaCarte("2", "Surprise Me", "actiune", 45, "silver", lista)
+
 
     rezultat=pretMin(lista)
 
-    assert len(rezultat)==2
-    assert rezultat["realism"]== 38
-    assert rezultat["actiune"]==45
+    assert len(rezultat) == 2
+    assert rezultat["actiune"] == 45
+    assert rezultat["istorie"] == 80
 
 def testordonarePret():
     lista=[]
     lista = adaugaCarte("1", "Iliada Homer", "istorie", 80, "gold", lista)
     lista = adaugaCarte("2", "Surprise Me", "actiune", 45, "silver", lista)
-    lista = adaugaCarte("3", "Arta Conversatiei", "realism", 38, "none", lista)
+
 
     rezultat=ordonarePret(lista)
 
-    assert getId(rezultat[0])=="3"
-    assert getId(rezultat[1])=="2"
-    assert getId(rezultat[2])=="1"
+    assert getId(rezultat[0]) == "1"
+    assert getId(rezultat[1]) == "2"
+
 
 
 def testnumarTitluri():
     lista=[]
     lista = adaugaCarte("1", "Iliada Homer", "istorie", 80, "gold", lista)
     lista = adaugaCarte("2", "Surprise Me", "actiune", 45, "silver", lista)
-    lista = adaugaCarte("3", "Arta Conversatiei", "realism", 38, "none", lista)
+    lista = adaugaCarte("3","Ion","actiune",65,"gold", lista)
+
 
     rezultat=numarTitluri(lista)
 
-    assert rezultat["istorie"]==1
-    assert rezultat["actiune"]==1
-    assert rezultat["realism"]==1
+    assert rezultat["istorie"] == 1
+    assert rezultat["actiune"] == 2
+
 
 

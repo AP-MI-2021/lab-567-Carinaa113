@@ -1,13 +1,16 @@
-from Tests.testCRUD import testAdaugaCarte,testStergeCarte
 from Tests.testDomain import testCarte
-from Test.testFunctionalitate import testaplicareDiscount,testmodificareGen,testpretMin,testordonarePret,testnumarTitluri
+from Tests.testCRUD import testAdaugaCarte, testStergeCarte, testmodificaCarte
+from Tests.testFunctionalitate import testpretMin, testnumarTitluri, testmodificareGen, testaplicareDiscount, \
+    testordonarePret
 
 
 def runAllTests():
     testCarte()
     testAdaugaCarte()
     testStergeCarte()
+    testmodificaCarte()
     testpretMin()
     testnumarTitluri()
     testaplicareDiscount()
     testmodificareGen()
+    testordonarePret()

@@ -1,25 +1,25 @@
-from Domain.carte import creeazaCarte,getId,getTitlu,getTip_Reducere
+
+from Domain.carte import creeazaCarte, getId, getTitlu
 
 
-def adaugaCarte(id,titlu,gen,pret,tip_reducere,lista):
+def adaugaCarte(id, titlu, gen, pret, tip_reducere, lista):
     '''
-    adauga o carte intr o lista
-    :param id:string
-    :param titlu:string
-    :param gen:string
-    :param pret:float
-    :param tip_reducere:string
-    :param lista:lista de carti
-    :return:o lista continand elementele vechi si noua carte
+    adauga o carte in lista
+    :param id: int
+    :param titlu: string
+    :param gen: string
+    :param pret: float
+    :param tip_reducere: string
+    :param lista: o lista ce retine cartile
+    :return: o lista ce contine lista veche plus cartea adaugata
     '''
-    if getById(id,lista) is not None:
+
+    if getById(id, lista) is not None:
         raise ValueError("Id-ul exista deja!")
-    carte=creeazaCarte(id,titlu,gen,pret,tip_reducere)
-    if pret<0:
-        raise ValueError("Pretul nu poate fi numar negativ!")
+    carte = creeazaCarte(id, titlu, gen, pret, tip_reducere)
     return lista+[carte]
 
-def getById(id,lista):
+def getById(id, lista):#cautam in lista cartea cu id-ul deja introdus
     '''
     da cartea cu id-ul dat dintr o lista
     :param id: string
@@ -27,37 +27,37 @@ def getById(id,lista):
     :return: cartea cu id ul dat din lista sau None daca aceasta nu exista
     '''
     for carte in lista:
-        if getId(carte)==id:
+        if getId(carte) == id:
             return carte
     return None
 
-def getByTitlu(titlu,lista):
+def getByTitlu(titlu, lista):
     '''
-
-    :param titlu:
-    :param lista:
-    :return:
+    da cartea cu titlul dat dintr-o lista
+    :param titlu:string
+    :param lista:lista de carti
+    :return:cartea cu titlul dat din lista sau None daca nu exista
     '''
     for carte in lista:
-        if getTitlu(carte)==titlu:
+        if getTitlu(carte ) == titlu:
             return carte
         return None
 
-def stergeCarte(id,lista):
+def stergeCarte(id, lista):
+    '''
+    sterge o carte dupa id dintr o lista
+    :param id:id ul cartii de sters
+    :param lista:lista de carti
+    :return:lista continand cartile cu id ul diferit de id
     '''
 
-    :param id:
-    :param lista:
-    :return:
-    '''
-
-    if getById(id,lista) is None:
+    if getById(id, lista) is None:
         raise ValueError("Nu exista vreo carte cu id-ul dat!")
     return[carte for carte in lista if getId(carte) != id]
 
 
 
-def modificaCarte(id,titlu,gen,pret,tip_reducere):
+def modificaCarte(id, titlu, gen, pret, tip_reducere, lista=None):
     '''
     modifica o prajitura dupa id
     :param id:
@@ -68,12 +68,12 @@ def modificaCarte(id,titlu,gen,pret,tip_reducere):
     :return:
     '''
 
-    if getById(id,lista) is None:
+    if getById(id, lista) is None:
         raise ValueError("Nu exista vreo carte cu  id-ul dat!")
     listaNoua=[]
     for carte in lista:
         if getId(carte)==id:
-            carte_noua==creeazaCarte(id,titlu,gen,pret,tip_reducere)
+            carte_noua=creeazaCarte(id,titlu,gen,pret,tip_reducere)
             listaNoua.append(carte_noua)
         else:
             listaNoua.append(carte)

@@ -1,24 +1,20 @@
-from UI.consola_noua import meniu
+
 from UI.console import runMenu
 from Tests.testAll import runAllTests
+from UI.consola_noua import meniu
+
 
 
 def main():
     runAllTests()
-    lista=[]
+    print("1.consola veche")
+    print("2.consola noua")
+    console = int(input("dati nr consolei pe care vreti sa o alegeti"))
+    if console == 1:
+        runMenu([])
+    elif console == 2:
+        meniu([])
 
-    while True:
-        print("1.Consola clasica")
-        print("2.Consola noua")
-        print("3.Exit")
-        op=int(input("Alegeti consola: "))
-        if op==1:
-            lista=runMenu(lista)
-        elif op==2:
-            lista=meniu(lista)
-        elif op==3:
-            break
-        else:
-            print("Optiune invalida")
 
-main()
+if __name__ == "__main__":
+    main()

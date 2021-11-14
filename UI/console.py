@@ -16,10 +16,10 @@ def printMenu():
     print("8.Afisarea numarului de titluri distincte pentru fiecare gen")
     print("u.undo")
     print("r.Redo")
-    print("a.Afisare carti")
+    print("a.Afisare carti ")
     print("x.Iesire")
 
-def uiAdaugaCarte(lista):
+def uiAdaugaCarte(lista,undolist,redolist):
     try:
         id=input("Dati id-ul: ")
         titlu=input("Dati titlul:")
@@ -33,21 +33,21 @@ def uiAdaugaCarte(lista):
         redolist.clear(lista)
         return rezultat
     except ValueError as ve:
-        print('Eroare! Detalii:', ve)
+        print('Eroare! Detalii:'.format(ve))
         return lista
 
 
-def uiStergeCarte(lista):
+def uiStergeCarte(lista, undolist, redolist):
    try:
-       id=input("Dati id-ul cartii de sters: ")
-       rezultat=stergeCarte(id,lista)
+       id = input("Dati id-ul cartii de sters: ")
+       rezultat = stergeCarte(id, lista)
 
        undolist.append(lista)
        redolist.clear()
        return rezultat
    except ValueError as ve:
        print("Eroare: {}".format(ve))
-       return lista
+
 
 
 
@@ -59,10 +59,10 @@ def uiModificaCarte(lista,undolist,redolist):
         gen = input("Dati  noul gen:")
         pret = float(input("Dati noul  pret:"))
         tip_reducere = input("Dati tipul noii reducerii:")
-        rezultat=modificareCarte(id,titlu,gen,pret,tip_reducere,lista)
-
+        rezultat = modificaCarte(id,titlu,gen,pret,tip_reducere,lista)
         undolist.append(lista)
         redolist.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
@@ -71,72 +71,71 @@ def showAll(lista):
     for carte in lista:
         print(toString(carte))
 
-def consolemodificareGen():
-    try:
-        titlu=input("Titlul cartii careia ii modificam genul: ")
-        genNou=input("Noul gen: ")
-        modificareGen(titlu,genNou,lista)
-    except ValueError as ve:
-        print("Eroare: {}".format(ve))
-        return lista
-
-def consolepretMin(lista):
-    rezultat=pretMin(lista)
-    for gen in rezultat:
-        print("Genul {} are pretul minim".format(gen,rezultat[gen]))
-
-def consoleordonarePret(lista):
-    showAll(ordonarePret(lista))
-
-def consolenumarTitluri(lista,undolist,redolist):
-    rezultat=numarTitluri(lista)
-    for gen in rezultat:
-        print("Genul {} are numarul de titluri egal cu {}".format(gen,rezultat[gen]))
-
-def uiaplicareDiscount(lista,undolist,redolist):
+def uiaplicareDiscount(lista, undolist, redolist):
+    nou = aplicareDiscount(lista)
     undolist.append(lista)
     redolist.clear()
-    return aplicareDiscount(lista)
+    return nou
+
+def uimodificareGen(lista, undolist, redolist):
+        titlu = input("Titlul cartii careia ii modificam genul: ")
+        genNou = input("Noul gen: ")
+        rezultat = modificareGen(titlu, genNou, lista)
+        undolist.append(lista)
+        redolist.clear()
+        return rezultat
 
 
-def runMenu(lista):
-   undolist=[]
-   redolist=[]
+def uipretMin(lista):
+    rezultat = pretMin(lista)
+    for gen in rezultat:
+        print("Genul {} are pretul minim".format(gen, rezultat[gen]))
+
+def uiordonarePret(lista):
+    showAll(ordonarePret(lista))
+
+def uinumarTitluri(lista, undolist, redolist):
+    print(numarTitluri(lista))
+
+
+def runMenu( lista ):
+   undolist = []
+   redolist = []
    while True:
-       print_menu()
-       optiune=input("Datio optiunea: ")
+       printMenu()
+       optiune=input("Dati optiunea: ")
 
-       if optiune=="1":
-           lista=uiAdaugaCarte(lista,undolist,redolist)
-       elif optiune=="2":
-           lista=uiStergeCarte(lista,undolist,redolist)
-       elif optiune=="3":
-           lista=uiModificaCarte(lista,undolist,redolist)
-       elif optiune=="4":
-           lista=uiaplicareDiscount(lista,undolist,redolist)
-       elif optiune=="5":
-           consolemodificareGen(lista)
-       elif optiune=="6":
-           consolepretMin(lista)
-       elif optiune=="7":
-           consoleordonarePret(lista)
-       elif optiune=="8":
-           consolenumarTitluri(lista)
-       elif optiune=="u":
-           redolist.append(lista)
+       if optiune == "1":
+           lista = uiAdaugaCarte(lista, undolist, redolist)
+       elif optiune == "2":
+           lista = uiStergeCarte(lista, undolist, redolist)
+       elif optiune == "3":
+           lista = uiModificaCarte(lista,undolist,redolist)
+       elif optiune == "4":
+           lista = uiaplicareDiscount(lista,undolist,redolist)
+       elif optiune == "5":
+           lista = uimodificareGen(undolist, redolist, lista)
+       elif optiune == "6":
+           uipretMin(lista)
+       elif optiune == "7":
+           uiordonarePret(lista)
+       elif optiune == "8":
+           uinumarTitluri(lista, redolist, undolist)
+       elif optiune == "u":
            if len(undolist) > 0:
+               redolist.append(lista)
                lista=undolist.pop()
            else:
                print("Nu se poate face undo.")
-       elif optiune=="r":
-           undolist.append(lista)
+       elif optiune == "r":
            if len(redolist) > 0:
+               undolist.append(lista)
                lista=redolist.pop()
            else:
                print("Nu se poate face redo.")
-       elif optiune =="a":
+       elif optiune == "a":
            showAll(lista)
-       elif optiune=="x":
+       elif optiune == "x":
            break
        else:
            print("Optiune gresita!Reincercati: ")

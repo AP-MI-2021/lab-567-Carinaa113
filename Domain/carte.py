@@ -1,4 +1,4 @@
-def creeazaCarte(id,titlu,gen,pret,tip_reducere):
+def creeazaCarte(id, titlu, gen, pret, tip_reducere):
     '''
     creeaza un dictionar ce reprezinta o carte
     :param id:string
@@ -9,7 +9,7 @@ def creeazaCarte(id,titlu,gen,pret,tip_reducere):
     :return:un dictionar ce contine o carte
         '''
 
-    list=[id,titlu,gen,pret,tip_reducere]
+    list=[id, titlu, gen, pret, tip_reducere]
 
     return list
 
@@ -29,15 +29,15 @@ def getTitlu(carte):
 def getGen(carte):
     return carte[2]
 
-def getPret(carte):
+def getPret( carte ):
     return carte[3]
 
 def getTip_Reducere(carte):
     return carte[4]
 
-def schimbareGen(carte,genNou):
+def schimbareGen(carte, genNou):
 
-    carte[gen]=genNou
+    carte[2]=genNou
 
 
 def toString(carte):

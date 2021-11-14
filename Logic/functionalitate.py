@@ -1,4 +1,4 @@
-from Domain.carte import getId,getTitlu,getPret,getGen,getTip_Reducere,schimbareGen,creeazaCarte
+from Domain.carte import getId,getTitlu,getPret,getGen,getTip_Reducere,creeazaCarte
 from Logic.CRUD import getByTitlu
 
 
@@ -49,7 +49,7 @@ def modificareGen(titlu,GenNou,lista):
 
     for carte in lista:
         if getTitlu(carte)==titlu:
-            modificareGen(carte,GenNou)
+            modificareGen(carte,GenNou,lista)
         if getByTitlu(titlu,lista) is None:
             raise ValueError("Nu exista titlu dat!")
 
@@ -82,28 +82,21 @@ def ordonarePret(lista):
 
     return sorted(lista, key=getPret)
 
-def numarTitluri(lista):
-    '''
-    Afisarea numarului de titluri distincte in functie de gen
-    :param lista:
-    :return: numarul de titluri diferite pentru fiecare gen in parte
-    '''
-
 
 def numarTitluri(lista):
    genuri={}
    titluri={}
 
    for carte in lista:
-       titlu=getTitlu(carte)
-       gen=getGen(carte)
+       titlu = getTitlu(carte)
+       gen = getGen(carte)
        if gen in genuri:
            if titlu in titluri:
-               genuri[gen]=genuri[gen]+1
-               titluri[titlu]=titlu
+               genuri[gen] = genuri[gen]+1
+               titluri[titlu] = titlu
            else:
-               genuri[gen]=1
-               titluri[titlu]=titlu
+               genuri[gen] = 1
+               titluri[titlu] = titlu
    return genuri
 
 
