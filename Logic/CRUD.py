@@ -63,7 +63,7 @@ def modificaCarte(id, titlu, gen, pret, tip_reducere, lista=None):
     :param id:
     :param titlu:
     :param gen:
-    :param pret:
+    :param pret:float
     :param tip_reducere:
     :return:
     '''
@@ -73,7 +73,7 @@ def modificaCarte(id, titlu, gen, pret, tip_reducere, lista=None):
     listaNoua = []
     for carte in lista:
         if getId(carte) == id:
-            carte_noua = creeazaCarte(id,titlu,gen,pret,tip_reducere)
+            carte_noua = creeazaCarte(id, titlu, gen, pret, tip_reducere)
             listaNoua.append(carte_noua)
         else:
             listaNoua.append(carte)

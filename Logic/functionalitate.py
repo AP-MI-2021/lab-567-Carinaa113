@@ -1,5 +1,8 @@
 from Domain.carte import getId, getTitlu, getPret, getGen, getTip_Reducere, creeazaCarte
+
+
 # reducerea pretului in functie de discountul aplicat
+from Logic.CRUD import modificaCarte
 
 
 def aplicareDiscount(lista):
@@ -45,20 +48,16 @@ def modificareGen(titluNou, GenNou, lista):
     :return:genul modificat al cartii
     '''
 
-    listaNoua = []
     for carte in lista:
+        id = getId(carte)
+        titlu = getTitlu(carte)
+        pret = getPret(carte)
+        tip_reducere = getTip_Reducere(carte)
         if getTitlu(carte) == titluNou:
-            carteNoua = creeazaCarte(
-                getId(carte),
-                getTitlu(carte),
-                getGen(carte).replace(getGen(carte), GenNou) ,
-                getPret(carte),
-                getTip_Reducere(carte)
-            )
-            listaNoua.append(carteNoua)
+            lista = modificaCarte(id, titlu, GenNou, pret, tip_reducere, lista)
         else:
-            listaNoua.append(carte)
-    return listaNoua
+            pass
+    return lista
 
 
 def pretMin(lista):

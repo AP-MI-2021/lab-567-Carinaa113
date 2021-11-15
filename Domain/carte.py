@@ -29,7 +29,7 @@ def getTitlu(carte):
 def getGen(carte):
     return carte[2]
 
-def getPret( carte ):
+def getPret( carte):
     return carte[3]
 
 def getTip_Reducere(carte):
@@ -49,3 +49,4 @@ def toString(carte):
         getTip_Reducere(carte)
     )
 
+print(list)

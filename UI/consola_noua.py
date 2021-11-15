@@ -66,6 +66,10 @@ def meniu_nou(lista):
             elif comanda[0] ==" showall":
                 for carte in lista:
                     print(toString(carte))
+            elif comanda[0] == "help":
+                meniu(lista)
+            elif comanda[0] == "Iesire":
+                break
             else:
                 print("Reincercati! Comanda introdusa gresit! ")
 
