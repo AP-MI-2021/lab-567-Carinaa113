@@ -114,7 +114,7 @@ def runMenu( lista ):
        elif optiune == "4":
            lista = uiaplicareDiscount(lista,undolist,redolist)
        elif optiune == "5":
-           lista = uimodificareGen(undolist, redolist, lista)
+           lista = uimodificareGen(lista, undolist, redolist)
        elif optiune == "6":
            uipretMin(lista)
        elif optiune == "7":

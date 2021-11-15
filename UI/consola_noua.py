@@ -39,7 +39,6 @@ def showAll(lista):
         print(toString(carte))
 
 
-
 def meniu(lista):
     print("Comenzile introduse trebuie separate prin ; acestea putand fi: \n"
                   "Adaugare: add,id,titlu,gen,pret,tip reducere \n"
@@ -50,9 +49,9 @@ def meniu(lista):
 def meniu_nou(lista):
     while True:
         meniu(lista)
-        comenzi= input("Introduceti comenzile: ").split(";")
+        comenzi = input("Introduceti comenzile: ").split(";")
         for i in range(len(comenzi)):
-            comanda=comenzi[i].split(",")
+            comanda = comenzi[i].split(",")
             if comanda[0] == "add":
                 try:
                     lista=adaugaCarte(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
@@ -63,14 +62,9 @@ def meniu_nou(lista):
                     lista=stergeCarte(comanda[1], lista)
                 except ValueError as ve:
                     print(f"Eroare: {ve}")
-            elif comanda[0] ==" showall":
+            elif comanda[0] ==" showall ":
                 for carte in lista:
                     print(toString(carte))
-            elif comanda[0] == "help":
-                meniu(lista)
-            elif comanda[0] == "Iesire":
-                break
             else:
                 print("Reincercati! Comanda introdusa gresit! ")
-
 

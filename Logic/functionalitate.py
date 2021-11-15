@@ -124,7 +124,7 @@ def doRedo(undolist, redolist, listacurenta):
     '''
     Returneaza lista dupa un apel al functiei Redo
     :param undolist: Lista de liste de carti,ce se modifica in urma apeluluui unei functionalitati
-    :param redolist: lista de lise care se modifica in urma uunei apelari Undo
+    :param redolist: lista de liste care se modifica in urma unei apelari Undo
     :param listacurenta: lista actuala de carti
     :return: lista noua ce se obtine dupa Redo
     '''
