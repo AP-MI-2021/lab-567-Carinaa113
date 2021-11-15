@@ -54,7 +54,7 @@ def meniu_nou(lista):
             comanda = comenzi[i].split(",")
             if comanda[0] == "add":
                 try:
-                    lista=adaugaCarte(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
+                    lista=adaugaCarte(comanda[1], comanda[2], comanda[3], float(comanda[4]), comanda[5], lista)
                 except Exception as e:
                     print(f"Eroare: {e}")
             elif comanda[0] == " delete":
@@ -62,7 +62,7 @@ def meniu_nou(lista):
                     lista=stergeCarte(comanda[1], lista)
                 except ValueError as ve:
                     print(f"Eroare: {ve}")
-            elif comanda[0] ==" showall ":
+            elif comanda[0] == " showall ":
                 for carte in lista:
                     print(toString(carte))
             else:
