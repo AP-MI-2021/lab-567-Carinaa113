@@ -19,6 +19,18 @@ def printMenu():
     print("a.Afisare carti ")
     print("x.Iesire")
 
+def undo(lista, undo_list, redo_list):
+    if len(undo_list) > 0:
+        redo_list.append(lista)
+        lista = undo_list.pop()
+    return lista
+
+def redo(lista, undo_list, redo_list):
+    if len(redo_list) > 0:
+        undo_list.append(lista)
+        lista = redo_list.pop()
+    return lista
+
 def uiAdaugaCarte(lista,undolist,redolist):
     try:
         id=input("Dati id-ul: ")
